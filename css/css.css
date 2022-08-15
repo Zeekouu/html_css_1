@@ -1,0 +1,482 @@
+/* 
+  1- les éléments commun (styles commun)
+
+  2- les styles générales (globals)
+
+  3- les sections (éléments de site)
+     3-1 Header
+     3-2 Home
+     3-3 About
+     3-4 Portfolio
+     3-5 Service
+     3-6 Prices
+     3-7 Team
+     3-8 Blog
+     3-9 Contact
+     3-10 Footer
+
+*/
+
+/*----------------- 1 les éléments commun (li ghayt3awdo)----------------*/
+  /* 
+      - container
+      -lhaja fo9aniya
+      - opacity hover
+      - section header
+      - section padding
+      - hover effect 1 ( left to right )
+      - hover effect 2 ( top to bottom )
+
+    */
+
+/*----------- 1 les éléments commun (li ghayt3awdo)---------*/
+
+
+.container{
+    width: 80%;
+    margin: auto;
+  }
+.lhaja_fo9aniya{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background:rgba(0, 0, 0,0.5) ; /* rgba hiya rgb 3adiya bsseh dik a bhaal opacity */
+   
+  }
+  .hover-opacity{
+    transition: opacity .5s; /* transition sa fait sur tous les elements du botton (margin ...) c'st pour cela on doit ajouter opacity*/
+  }
+  .hover-opacity:hover {
+    opacity: 0.8;
+    
+  }
+  .ltr-effect{
+    position: relative;
+   
+  }
+  .ltr-effect::after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    background-color: rgb(0, 0, 0);
+    /* si on a fais seulement ça il va faire le cadre apres read more directement c'est pour sela on doit ajouter left et right 0 */
+    left: 0;
+    top: 0;
+    transition: .5s; /* si je veut fais une transition de gauche ver le droite je doit ajouter width a coter de 1s */
+    z-index: -1; /* pour avoir cette background ariere les paroles */
+  }
+  .ltr-effect:hover::after{
+    width: 100%;
+    height: 100%;
+    
+  }
+
+
+/*----------------- 2 les styles générales ----------------*/
+*{
+    margin: 0;
+    padding: 0; 
+    box-sizing: border-box; /* cette regle ces pour dire que padding et border n'affect pas sur width */
+}
+body {
+    font-family:  Verdana, Geneva, Tahoma, sans-serif;
+}
+.clear {
+    clear: both;
+}
+h1 ,h2 , h3 , h4{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.section-header{
+  text-align: center;
+}
+.portfolio .section-header{
+  text-align: center;
+  padding-right: 3%;
+}
+.section-header .section-title{
+  font-size: 25px;
+  text-transform: capitalize;
+  margin-bottom: 4px;
+}
+.section-header .line {
+  display: block;
+  width: 60px;
+  height: 5px;
+  margin:0 auto 70px auto;
+  background-color:aquamarine;
+}
+
+
+.bd-y{
+padding: 120px 0;
+margin: auto;
+}
+
+/*-------------------- 3 les sections ----------------------*/
+
+
+
+  /*----------- 3-1 Header -----------*/
+
+ .header{
+   
+    position: fixed;
+    width: 100%;
+    z-index: 10; /* cette role est tres inportans pour avoir header au-dessus de home */
+
+    /* position fixed est absolute changer etat de element de block vers inligne block*/
+     
+}
+ .header .logo{
+    float: left;
+    margin-right: 180px;  
+}
+
+ .header .nav{
+    float: left;
+}
+ .header .nav > li {
+    display: inline-block;
+    list-style-type: none;
+}
+ .header .nav >li > a {
+    text-decoration: none;
+    display: block;
+    color: aliceblue;
+    padding: 30px 10px;
+}
+.header .nav > li > a::after , .header .nav li a.active::after{
+    content: "";
+    display: block;
+    height: 2px;
+    background-color: aquamarine;
+    transition: width .5s;
+    /* jm3na a m3a a.active mhitach andhom nsf style mbdliin ghi f width */
+}
+.header .nav > li a::after {
+    width: 0;
+       /* ga3 les lien flwwl kaykon mtb9 3lihom after bsseh width rah 0 */
+}
+.header .nav > li a:hover::after{
+    width: 100%;
+    /* mn mora manchawer 3la ay lien aplliquer after o3ti l width 100% hadi hiya ma3na dialha */
+}
+.header .nav > li a.active::after{
+   
+    width: 100% ;
+}
+.dropdown{
+    position: relative;
+    
+}
+.dropdown:hover .dropdown-menu{
+    visibility: visible;
+    opacity: 1;
+   /* c'est obliger de faire opacity et visibiliter en meme temps ne suffit pas de faire seulement une */
+}
+.dropdown-menu{
+    position: absolute;
+    background-color:rgb(41, 188, 188);
+    display: block;
+    padding: 15px 0;
+    list-style: none;
+    width: 120px;
+    text-align: center;
+    left: -48%;
+    top: 75%;
+    visibility: hidden;
+    opacity: 0;
+    transition:  opacity .3s ,visibility .3s;
+    
+}
+.dropdown-menu a {
+    text-decoration: none;
+    color: #fff;
+}
+
+
+
+
+
+  /*---------- 3-2 Home -------------*/
+  .home{
+    height: 100vh;
+    background-image: url(../images/background/web4.jpg);
+    background-size: cover; /*hadi mohima bach tswira takhed la taille dial ecran */
+    position: relative;
+   
+  }
+  .home-contenu{
+   position: absolute;
+   top: 50%;
+   left:50%;
+   transform: translate(-50% , -50%);
+   text-align: center;
+   width: 60%;
+   /* ces quatre ligne s'apellent : HERO images ( centrer un element dans un element)*/
+  }
+  .home-title {
+    color: beige;
+    font-size: 40px;
+    text-transform: uppercase;
+  }
+  .home-parag {
+    margin: 15px 0px;
+    color: #fff;
+    letter-spacing: 2px; /*espace entre les caracterres */
+    line-height: 1.5;  /* espace entre le mot */
+  }
+  .home .btn {
+    width: 150px ;
+    padding: 15px 0px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    
+  }
+  .home-started {
+    margin-right:20px ;
+    background-color: #fff;
+  }
+  .home-learn {
+    background-color: rgb(41, 188, 188);
+    color: #fff;
+  }
+
+
+     /*------- 3-3 About --------- */
+.about-photo-2{
+
+  height: 100vh;
+  background-size: 120vh;
+  background-image: url(../images/background/web8.jpg);
+  position: relative;
+  opacity: 0.9;
+  background-attachment: fixed;
+ 
+     }
+ .about-contenu{
+  overflow: hidden; /*comme clear: both*/
+ }
+ .about-item{
+  text-align: center;
+  width: 30%;
+  float: left;
+ 
+  padding: 50px 20px;
+ }
+ .about-item.center{
+  margin: 0 5%;
+ }
+ .about-item i {
+  color: aquamarine;
+  margin-bottom: 9px ;
+ }
+ .about-item-title{
+  color: rgb(116, 112, 112);
+  text-transform: capitalize;
+  margin-bottom: 9px;
+ }
+ .about-item .description{
+  color: rgb(241, 229, 229);
+  line-height: 1.5;
+  margin-bottom: 9px;
+ }
+ .about-anchor{
+  color: rgb(52, 199, 199);
+  text-decoration: none;
+  text-transform: capitalize;
+ }
+ .about-item:hover .about-item-title , .about-item:hover .about-anchor {
+  color: #fff;
+  transition: .5s;
+ }
+ .about-item:hover .description {
+  color: aqua;
+  transition: .5s;
+ }
+
+    /*-------- 3-4 Portfolio --------*/
+    .portfolio {
+      background: #efeded;
+      
+    }
+    .portfolio-contenu {
+      overflow: hidden;
+      width: 80%;
+     display: block;
+     margin-left: 13%;
+    }
+    .portfolio-item{
+      position: relative;
+      float: left;
+      width: 30%; 
+    }
+    .portfolio-item img{
+      width: 100%;
+      height: 100%;
+      padding: 10px;
+    }
+  
+
+  .portfolio-hvr{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 80%;
+    height: 100%;
+    background-color: rgba(0, 0, 0,0.6);
+    opacity: 0; 
+    transition: width .7s;
+  
+  }
+  .portfolio-hvr:hover{
+ 
+    opacity: 1;
+    width: 100%;
+  
+  
+  }
+  .portfolio-hero {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+    text-align: center;
+    color: #fff;
+    text-transform: capitalize;
+  }
+ 
+ 
+  .portfolio-hero a {
+    display: inline-block;
+    margin: 10px 3px;
+    color: aqua;
+    font-size: 15px;
+   
+   
+  }
+
+  .portfolio-hero a i {
+    width: 40px;
+    height: 40px;
+    line-height: 40px; /* pour centrer les icons si ils sont dans un cadre */
+   
+  }
+  .portfolio-hero .title {
+    font-size: 10px;
+  
+  }
+  .portfolio-hero span {
+    display: block;
+    font-size: 8px;
+    margin: 5px;
+   
+  }
+
+
+   /* ------------- 3-5 Service ------------- */
+
+  .service-content-item{
+    position: relative;
+    width: 30%;
+    margin: 5px;
+    float: left;
+  }
+  .service-content img {
+    width: 100%;
+    position: relative;
+    
+  }
+  .service-hover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(144, 193, 193);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+    text-align: center;
+    opacity: 0;
+    transition: 1s;
+   
+  }
+  .service-hover:hover{
+    opacity: 0.8;
+  }
+  .hoho{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50% , -50%);
+  }
+
+    /*-------- number ---------*/
+    .number {
+      position: relative;
+      background-image: url(../images/background/web6.jpg);
+      height: 400px; /*on peut faire sa dans le cas ou limage s'affiche pas */
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    .number-items {
+      overflow: hidden;
+      padding: 150px 0;
+    }
+    .number-item {
+      width: 25%;
+      float: left;
+      text-align: center;
+    }
+    .number-item li {
+      color: rgb(49, 195, 195);
+      margin-bottom: 15px;
+    }
+    .number-item-title {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: rgb(255, 255, 255);
+    }
+    .number-item-text{
+      color: #fff;
+    }
+
+      /*------- footer ------*/
+      .footer {
+        background-color: rgb(52, 50, 50);
+        text-align: center;
+        padding: 60px 0;
+      }
+      .footer-links{
+        list-style: none;
+        margin: 20px 0;
+      }
+    .footer-links li {
+      display: inline-block;
+    }
+    .footer-links li a {
+      display: block;
+      width: 50px;
+      height: 50px;
+      color: #fff;
+      background-color: rgb(52, 160, 160);
+      margin-right: 5px;
+      border-radius: 50%; /* pour avoir les icones de type cercle */
+
+    }
+
+    .footer-links li a i {
+      line-height: 50px;
+    }
+    .footer p {
+      display: block;
+      font-family:fantasy;
+      font-size: 20px;
+     
+    }
